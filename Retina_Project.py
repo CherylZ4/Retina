@@ -7,7 +7,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         self.setWindowTitle("Retina")
-        self.setGeometry(100, 100, 400, 300)
+        self.showMaximized()
 
         button = QPushButton("Upload image", self)
         button.setGeometry(150, 150, 100, 50)
