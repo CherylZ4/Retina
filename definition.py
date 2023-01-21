@@ -16,6 +16,13 @@ import sys
 
 objCoord = cloudvision.grabobjects('images\cat.jpg')
 
+def grabAllDef(initialdict: dict):
+    finaldict = {}
+    for keys in initialdict:
+        finaldict[keys] = cohereapi.grabDefinition(keys)
+    return finaldict
+
+defDict = grabAllDef(objCoord)
 
 current_obj = None
 
@@ -80,8 +87,9 @@ class Definition(QWidget):
         global current_obj
 
         self.label = QLabel()
-        worddef = cohereapi.grabDefinition(current_obj)
-        # worddef = "hi"
+        worddef = defDict[current_obj]
+        print(worddef)
+        #worddef = "hi"
         self.label.setText(current_obj + '\n__________\n\n' + worddef)
         self.label.setStyleSheet(
             "background-color: #DBF0FF;"
