@@ -1,3 +1,4 @@
 cohere
 google.cloud
 opencv-python
+pyqt6
