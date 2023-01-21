@@ -1,2 +1,3 @@
 cohere
 google.cloud
+opencv-python

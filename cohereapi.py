@@ -32,5 +32,3 @@ Definition:""",
     stop_sequences=["--"]
     )
   return (response.generations[0].text.strip('--').strip('\n'))
-
-print(grabDefinition('Wood'))
