@@ -2,9 +2,9 @@ import photoshoot
 import cloudvision
 import cohereapi
 
-photoshoot.openCam()
+time = photoshoot.openCam()
 print("Photo taken")
-itemlist = cloudvision.grabobjects('/home/conradm/GitHub/Retina/capture.jpg')
+itemlist = cloudvision.grabobjects(f'/home/conradm/GitHub/Retina/{time}.jpg')
 print("Grabbed item list from photo")
 for items in itemlist:
     if items[len(items)-1] == 's':

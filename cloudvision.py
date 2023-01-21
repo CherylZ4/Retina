@@ -2,7 +2,6 @@ from google.cloud import vision
 import io
 def grabobjects(path):
     itemlist = []
-    from google.cloud import vision
     client = vision.ImageAnnotatorClient()
 
     with open(path, 'rb') as image_file:
