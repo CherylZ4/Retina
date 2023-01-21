@@ -25,6 +25,36 @@ Definition: A long seat for several people.
 Word: Wall
 Definition: Any of various permanent upright constructions having a length much greater than the thickness and presenting a continuous surface.
 --
+Word: Comb
+Definition: An implement used for the dressing of hair, having a toothed or otherwise formed edge or surface, set in a handle of some material.
+--
+Word: Tie
+Definition: A long narrow piece of cloth or other material worn around the neck.
+--
+Word: Elevator
+Definition: A platform or cage, usually operated by electricity, in a shaft and used for raising and lowering people or things to different levels.
+--
+Word: Post
+Definition: A piece of wood, metal, concrete, etc., driven into the ground
+--
+Word: Sign
+Definition: A communication by words or symbols, written, painted, or drawn, or expressed in any other form.
+--
+Word: Mobile
+Definition: Relating to or designed for a moving vehicle or vehicles.
+--
+Word: Car
+Definition: An automobile, especially a closed, four-wheeled passenger car powered by an internal-combustion engine and designed to carry a small number of people.
+--
+Word: Clothing
+Definition: Items worn to cover the body, usually for warmth or decency.
+--
+Word: House
+Definition: A building or structure in which people live.
+--
+Word: Garden
+Definition: A plot of ground where herbs, fruits grow.
+--
 Word: {word}
 Definition:""",
     temperature=0.8,
