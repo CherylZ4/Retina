@@ -22,9 +22,9 @@ class MainWindow(QMainWindow):
         button = QPushButton("Upload image", self)
         button.setGeometry(150, 150, 100, 50)
         button.clicked.connect(self.open_image)
-        button = QPushButton("Take photo", self)
-        button.setGeometry(100, 200, 100, 50)
-        button.clicked.connect(self.take_photo)
+        button1 = QPushButton("Take photo", self)
+        button1.setGeometry(100, 200, 100, 50)
+        button1.clicked.connect(self.take_photo)
 
         # self.setGeometry(200, 200, 400, 300)
 
