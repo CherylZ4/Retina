@@ -1,2 +1,1 @@
-# UofTHacks
-Hackathon repository.
+# Retina
