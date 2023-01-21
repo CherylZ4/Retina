@@ -1,9 +1,10 @@
 import cohere
 import keys
-co = cohere.Client(keys.cohereapikey)
-response = co.generate(
-  model='xlarge',
-  prompt=f"""
+def grabDefinition(word: str):
+  co = cohere.Client(keys.cohereapikey)
+  response = co.generate(
+    model='xlarge',
+    prompt=f"""
 This program generates the definition of the given word
 --
 Word: Laptop
@@ -15,10 +16,12 @@ Definition: A small, open container made of china, glass, metal, etc., usually h
 Word: Chair
 Definition: A seat, especially for one person, usually having four legs for support and a rest for the back and often having rests for the arms.
 --
-Word: Eye
+Word: {word}
 Definition:""",
-  temperature=0.8,
-  max_tokens=100,
-  stop_sequences=["--"]
-  )
-print(response.generations[0].text)
+    temperature=0.8,
+    max_tokens=50,
+    stop_sequences=["--"]
+    )
+  return (response.generations[0].text)
+
+print(grabDefinition('bottle'))
