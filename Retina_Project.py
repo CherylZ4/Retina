@@ -2,6 +2,7 @@ import sys
 from PyQt6.QtWidgets import *
 from PyQt6.QtGui import *
 from PyQt6.QtCore import *
+import photoshoot
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -12,8 +13,16 @@ class MainWindow(QMainWindow):
         button.setGeometry(self.height(), self.width(), 100, 50)
         button.clicked.connect(self.open_image)
 
+        button = QPushButton("Take photo", self)
+        button.setGeometry(100, 200, 100, 50)
+        button.clicked.connect(self.take_photo)
+
+
         self.showMaximized()
         # self.setGeometry(200, 200, 400, 300)
+    def take_photo(self):
+        photoshoot.openCam()
+        
 
     def open_image(self):
         options = QFileDialog.Option.ReadOnly

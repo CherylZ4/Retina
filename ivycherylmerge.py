@@ -6,7 +6,7 @@ from pathlib import Path
 import cohereapi
 import cloudvision
 import sys
-
+import photoshoot
 objCoord = cloudvision.grabobjects('images\cat.jpg')
 
 
@@ -22,12 +22,19 @@ class MainWindow(QMainWindow):
         button = QPushButton("Upload image", self)
         button.setGeometry(150, 150, 100, 50)
         button.clicked.connect(self.open_image)
+        button = QPushButton("Take photo", self)
+        button.setGeometry(100, 200, 100, 50)
+        button.clicked.connect(self.take_photo)
+
+        # self.setGeometry(200, 200, 400, 300)
 
         self.setMouseTracking(True)
 
         self.w = None
 
         self.size = self.screen().size()
+    def take_photo(self):
+        photoshoot.openCam()
 
     def open_image(self):
         options = QFileDialog.Option.ReadOnly

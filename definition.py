@@ -14,7 +14,7 @@ import sys
 
 # objCoord = {'glasses': [[0.3, 0.3], [0.3, 0.6], [0.6, 0.6], [0.6, 0.5]]}
 
-objCoord = cloudvision.grabobjects('images\cat.jpg')
+objCoord = cloudvision.grabobjects('/Users/cherylz/Desktop/cat.jpg')
 
 def grabAllDef(initialdict: dict):
     finaldict = {}

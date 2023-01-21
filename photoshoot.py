@@ -24,4 +24,5 @@ def openCam():
         if cv2.waitKey(1) & 0xFF == 0x20:
             cv2.imwrite(f'{current_time}.jpg', frame)
             break
+    cam.release()
     return current_time
