@@ -1,6 +1,7 @@
 from google.cloud import vision
 import io
 def grabobjects(path):
+    print('Running image function')
     itemdict = {}
     client = vision.ImageAnnotatorClient()
 

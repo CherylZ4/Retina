@@ -22,7 +22,7 @@ def openCam():
         cv2.imshow('frame', rgb)
         #print(cv2.waitKey(1))
         if cv2.waitKey(1) & 0xFF == 0x20:
-            cv2.imwrite(f'{current_time}.jpg', frame)
+            cv2.imwrite('current.jpg', frame)
             break
-    cam.release()
-    return current_time
+    #cam.release()
+    return 'current.jpg'
