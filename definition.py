@@ -6,7 +6,10 @@ from PyQt6 import QtCore, QtGui
 import sys
 
 # top-left, top-right, bottom-left, bottom-right
-objCoord = {'glasses': [(0,0), (0, 100), (100, 0), (500, 500)]}
+objCoord = {'glasses': [[500,500], [500, 1000], [1000, 500], [1000, 1000]],
+            'hat': [[0,0], [0, 500], [500, 0], [500, 500]]}
+
+current_obj = None
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -19,10 +22,12 @@ class MainWindow(QMainWindow):
         self.w = None
 
     def objClicked(self, event):
+        global current_obj
         pos = event.pos()
         for obj in objCoord:
             if objCoord[obj][0][0] <= pos.x() <= objCoord[obj][3][0]:
                 if objCoord[obj][0][1] <= pos.y() <= objCoord[obj][3][1]:
+                    current_obj = obj
                     return True
 
         
@@ -62,20 +67,19 @@ class AnotherWindow(QWidget):
         layout = QVBoxLayout()
         self.setWindowTitle('Definition')
 
+        global current_obj
+
         # layout.addWidget(Color('#DBF0FF'))
         self.label = QLabel()
-        self.label.setText("Word")
+        self.label.setText(current_obj)
         self.label.setStyleSheet(
             "background-color: #DBF0FF; "
             "font-family: times; "
             "font-size: 40px;"
             "color: #0D2333;"
         )
-        # layout.addWidget(self.label)
+        
         self.label.setAlignment(Qt.AlignmentFlag.AlignTop)
-        #font = QtGui.QFont("Times", 50)
-        #self.label.setFont(font)
-        # self.label.setFont(QFont(families[0], 80))
         layout.addWidget(self.label)
 
         self.setLayout(layout)
