@@ -5,9 +5,12 @@ from PyQt6 import QtCore, QtGui
 
 import sys
 
-# top-left, top-right, bottom-left, bottom-right
-objCoord = {'glasses': [[500,500], [500, 1000], [1000, 500], [1000, 1000]],
-            'hat': [[0,0], [0, 500], [500, 0], [500, 500]]}
+# top-left, top-right, bottom-right, bottom-left
+# objCoord = {'glasses': [[500,500], [500, 1000], [1000, 1000], [1000, 500]],
+#             'hat': [[0,0], [0, 500], [500, 500], [500, 0]]}
+
+objCoord = {'glasses': [[0.3, 0.3], [0.3, 0.6], [0.6, 0.6], [0.6, 0.5]]}
+
 
 current_obj = None
 
@@ -21,12 +24,14 @@ class MainWindow(QMainWindow):
 
         self.w = None
 
+        self.size = self.screen().size()
+
     def objClicked(self, event):
         global current_obj
         pos = event.pos()
         for obj in objCoord:
-            if objCoord[obj][0][0] <= pos.x() <= objCoord[obj][3][0]:
-                if objCoord[obj][0][1] <= pos.y() <= objCoord[obj][3][1]:
+            if objCoord[obj][0][0] * self.size.width() <= pos.x() <= objCoord[obj][2][0] * self.size.width():
+                if objCoord[obj][0][1] * self.size.height() <= pos.y() <= objCoord[obj][2][1] * self.size.height():
                     current_obj = obj
                     return True
 
@@ -69,7 +74,6 @@ class AnotherWindow(QWidget):
 
         global current_obj
 
-        # layout.addWidget(Color('#DBF0FF'))
         self.label = QLabel()
         self.label.setText(current_obj + '\n__________')
         self.label.setStyleSheet(
