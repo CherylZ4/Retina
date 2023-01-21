@@ -87,6 +87,13 @@ class Definition(QWidget):
         global current_obj
 
         self.label = QLabel()
+        self.label.setWordWrap(True)
+
+        # self.text = QTextEdit(self)
+        # self.text.setMinimumSize(480, 800)
+        # self.text.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+
+        # self.define = QLabel()
         worddef = defDict[current_obj]
         print(worddef)
         #worddef = "hi"
@@ -94,12 +101,23 @@ class Definition(QWidget):
         self.label.setStyleSheet(
             "background-color: #DBF0FF;"
             "font-family: times; "
-            "font-size: 40px;"
+            "font-size: 20px;"
             "color: #0D2333;"
         )
+        # self.label.setGeometry(0, 0, 500, 400)
+        # self.define.setText(worddef)
+        # self.setGeometry()
+        # self.define.setStyleSheet(
+        #     "background-color: #DBF0FF;"
+        #     "font-family: times; "
+        #     "font-size: 20px;"
+        #     "color: #0D2333;"
+        # )
         
         self.label.setAlignment(Qt.AlignmentFlag.AlignTop)
+        # self.define.setAlignment(Qt.AlignmentFlag.AlignJustify)
         layout.addWidget(self.label)
+        # layout.addWidget(self.define)
 
         self.setLayout(layout)
 
@@ -111,7 +129,7 @@ class Definition(QWidget):
 if __name__ == '__main__':
 
     app = QApplication(sys.argv)
-    app.setStyleSheet(Path('style.qss').read_text())
+    # app.setStyleSheet(Path('style.qss').read_text())
     window = MainWindow()
     sys.exit(app.exec())
 
