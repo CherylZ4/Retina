@@ -71,9 +71,9 @@ class AnotherWindow(QWidget):
 
         # layout.addWidget(Color('#DBF0FF'))
         self.label = QLabel()
-        self.label.setText(current_obj)
+        self.label.setText(current_obj + '\n__________')
         self.label.setStyleSheet(
-            "background-color: #DBF0FF; "
+            "background-color: #DBF0FF;"
             "font-family: times; "
             "font-size: 40px;"
             "color: #0D2333;"
