@@ -55,4 +55,4 @@ Definition:""",
     max_tokens=50,
     stop_sequences=["--"]
     )
-  return (response.generations[0].text.strip('--').strip('\n'))
+  return (response.generations[0].text.strip('--').strip('\n').lower())
