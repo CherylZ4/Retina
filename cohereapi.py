@@ -31,6 +31,6 @@ Definition:""",
     max_tokens=50,
     stop_sequences=["--"]
     )
-  return (response.generations[0].text)
+  return (response.generations[0].text.strip('--').strip('\n'))
 
-print(grabDefinition('Bicycle Wheel'))
+print(grabDefinition('Wood'))
