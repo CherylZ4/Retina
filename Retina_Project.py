@@ -26,7 +26,7 @@ class MainWindow(QMainWindow):
 class ImageWindow(QMainWindow):
     def __init__(self, file_name):
         super().__init__()
-        self.setWindowTitle("Retina - Image Viewer")
+        self.setWindowTitle("Retina")
         self.setGeometry(100, 100, 800, 600)
         self.showMaximized()
         label = QLabel(self)
