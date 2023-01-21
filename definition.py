@@ -3,7 +3,7 @@ from PyQt6.QtGui import *
 from PyQt6.QtCore import QSize, Qt
 from PyQt6 import QtCore, QtGui
 from pathlib import Path
-import cohereapi
+from cohereapi import *
 from cloudvision import *
 
 import sys
@@ -14,7 +14,7 @@ import sys
 
 # objCoord = {'glasses': [[0.3, 0.3], [0.3, 0.6], [0.6, 0.6], [0.6, 0.5]]}
 
-objCoord = grabobjects('/home/conradm/GitHub/Retina/23-01-21-07:41:58.jpg')
+objCoord = grabobjects('images\cat.jpg')
 
 
 current_obj = None
