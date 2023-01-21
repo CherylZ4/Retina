@@ -3,8 +3,8 @@ from PyQt6.QtGui import *
 from PyQt6.QtCore import QSize, Qt
 from PyQt6 import QtCore, QtGui
 from pathlib import Path
-from cohereapi import *
-from cloudvision import *
+import cloudvision
+import cohereapi
 
 import sys
 
@@ -14,7 +14,7 @@ import sys
 
 # objCoord = {'glasses': [[0.3, 0.3], [0.3, 0.6], [0.6, 0.6], [0.6, 0.5]]}
 
-objCoord = grabobjects('images\cat.jpg')
+objCoord = cloudvision.grabobjects('images\cat.jpg')
 
 
 current_obj = None
@@ -80,7 +80,7 @@ class Definition(QWidget):
         global current_obj
 
         self.label = QLabel()
-        worddef = grabDefinition(current_obj)
+        worddef = cohereapi.grabDefinition(current_obj)
         # worddef = "hi"
         self.label.setText(current_obj + '\n__________\n\n' + worddef)
         self.label.setStyleSheet(
