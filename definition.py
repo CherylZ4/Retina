@@ -80,7 +80,7 @@ class Definition(QWidget):
         global current_obj
 
         self.label = QLabel()
-        worddef = cohereapi.grabDefinition(current_obj)
+        worddef = grabDefinition(current_obj)
         # worddef = "hi"
         self.label.setText(current_obj + '\n__________\n\n' + worddef)
         self.label.setStyleSheet(
