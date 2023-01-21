@@ -5,6 +5,15 @@ from PyQt6 import QtCore, QtGui
 
 import sys
 
+# top-left, top-right, bottom-right, bottom-left
+# objCoord = {'glasses': [[500,500], [500, 1000], [1000, 1000], [1000, 500]],
+#             'hat': [[0,0], [0, 500], [500, 500], [500, 0]]}
+
+objCoord = {'glasses': [[0.3, 0.3], [0.3, 0.6], [0.6, 0.6], [0.6, 0.5]]}
+
+
+current_obj = None
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -15,10 +24,23 @@ class MainWindow(QMainWindow):
 
         self.w = None
 
+        self.size = self.screen().size()
+
+    def objClicked(self, event):
+        global current_obj
+        pos = event.pos()
+        for obj in objCoord:
+            if objCoord[obj][0][0] * self.size.width() <= pos.x() <= objCoord[obj][2][0] * self.size.width():
+                if objCoord[obj][0][1] * self.size.height() <= pos.y() <= objCoord[obj][2][1] * self.size.height():
+                    current_obj = obj
+                    return True
+
+        
 
     def mousePressEvent(self, event):
         pos = event.pos()
-        self.show_new_window(pos.x(), pos.y())
+        if self.objClicked(event): 
+            self.show_new_window(pos.x(), pos.y())
 
     def show_new_window(self, x, y):
         if self.w is None:
@@ -32,15 +54,41 @@ class MainWindow(QMainWindow):
         if self.w:
             self.w.close()
 
+class Color(QWidget):
+
+    def __init__(self, color):
+        super(Color, self).__init__()
+        self.setAutoFillBackground(True)
+
+        palette = self.palette()
+        palette.setColor(QPalette.ColorRole.Window, QColor(color))
+        self.setPalette(palette)
+
 class AnotherWindow(QWidget):
     
     def __init__(self, x, y):
         super().__init__()
-        self.setFixedSize(400,300)
+        self.setFixedSize(500,400)
         layout = QVBoxLayout()
-        self.label = QLabel("Definition")
+        self.setWindowTitle('Definition')
+
+        global current_obj
+
+        self.label = QLabel()
+        self.label.setText(current_obj + '\n__________')
+        self.label.setStyleSheet(
+            "background-color: #DBF0FF;"
+            "font-family: times; "
+            "font-size: 40px;"
+            "color: #0D2333;"
+        )
+        
+        self.label.setAlignment(Qt.AlignmentFlag.AlignTop)
         layout.addWidget(self.label)
+
         self.setLayout(layout)
+
+
 
         self.move(x, y)
 
