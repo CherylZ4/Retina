@@ -3,50 +3,39 @@ from PyQt6.QtWidgets import *
 from PyQt6.QtGui import *
 from PyQt6.QtCore import *
 
-class AnotherWindow(QMainWindow):
+class MainWindow(QMainWindow):
     def __init__(self):
-        super(AnotherWindow, self).__init__()
+        super(MainWindow, self).__init__()
+        self.setWindowTitle("Retina")
+        self.setGeometry(100, 100, 400, 300)
+
+        button = QPushButton("Upload image", self)
+        button.setGeometry(150, 150, 100, 50)
+        button.clicked.connect(self.open_image)
+
+    def open_image(self):
+        options = QFileDialog.Option.ReadOnly
+        file_name, _ = QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()", "","Images (*.png *.xpm *.jpg *.bmp);;All Files (*)", options=options)
+        print(file_name)
+
+        if file_name:
+            self.hide()
+            self.image_window = ImageWindow(file_name)
+            self.image_window.show()
+
+class ImageWindow(QMainWindow):
+    def __init__(self, file_name):
+        super().__init__()
+        self.setWindowTitle("Retina - Image Viewer")
+        self.setGeometry(100, 100, 800, 600)
         self.showMaximized()
         label = QLabel(self)
-        pixmap = QPixmap('/Users/cherylz/Desktop/cat.jpg')
+        pixmap = QPixmap(file_name)
         label.setPixmap(pixmap)
         self.setCentralWidget(label)
         self.resize(pixmap.width(), pixmap.height())
 
-class MainWindow(QMainWindow):
-    def __init__(self):
-        super(MainWindow, self).__init__()
-        self.window1 = AnotherWindow()
-        self.showMaximized()
-        self.setWindowTitle("Retina")
-
-        widget = Color('DBF0FF')
-        self.setCentralWidget(widget)
-        
-        self.button = QPushButton("Upload image")
-        self.button.setGeometry(100,100,100,100)
-        self.button.clicked.connect(self.open_second_window)
-        self.setCentralWidget(self.button)
-
-    def open_second_window(self):
-        self.hide()
-        self.second_window = AnotherWindow()
-        self.second_window.show()
-
-class Color(QWidget):
-
-    def __init__(self, color):
-        super(Color, self).__init__()
-        self.setAutoFillBackground(True)
-
-        palette = self.palette()
-        palette.setColor(QPalette.ColorRole.Window, QColor(color))
-        self.setPalette(palette)
-
-
 app = QApplication(sys.argv)
-
 window = MainWindow()
 window.show()
-
 sys.exit(app.exec())
