@@ -16,6 +16,15 @@ Definition: A small, open container made of china, glass, metal, etc., usually h
 Word: Chair
 Definition: A seat, especially for one person, usually having four legs for support and a rest for the back and often having rests for the arms.
 --
+Word: Bottle
+Definition: A portable container for holding liquids, characteristically having a neck and mouth and made of glass or plastic.
+--
+Word: Bench
+Definition: A long seat for several people.
+--
+Word: Wall
+Definition: Any of various permanent upright constructions having a length much greater than the thickness and presenting a continuous surface.
+--
 Word: {word}
 Definition:""",
     temperature=0.8,
@@ -24,4 +33,4 @@ Definition:""",
     )
   return (response.generations[0].text)
 
-print(grabDefinition('bottle'))
+print(grabDefinition('Bicycle Wheel'))
