@@ -4,6 +4,7 @@ from PyQt6.QtCore import QSize, Qt
 from PyQt6 import QtCore, QtGui
 from pathlib import Path
 import cohereapi
+from cloudvision import *
 
 import sys
 
@@ -11,7 +12,9 @@ import sys
 # objCoord = {'glasses': [[500,500], [500, 1000], [1000, 1000], [1000, 500]],
 #             'hat': [[0,0], [0, 500], [500, 500], [500, 0]]}
 
-objCoord = {'glasses': [[0.3, 0.3], [0.3, 0.6], [0.6, 0.6], [0.6, 0.5]]}
+# objCoord = {'glasses': [[0.3, 0.3], [0.3, 0.6], [0.6, 0.6], [0.6, 0.5]]}
+
+objCoord = grabobjects('/home/conradm/GitHub/Retina/23-01-21-07:41:58.jpg')
 
 
 current_obj = None
@@ -77,9 +80,9 @@ class Definition(QWidget):
         global current_obj
 
         self.label = QLabel()
-        # worddef = cohereapi.grabDefinition(current_obj)
-        worddef = "hi"
-        self.label.setText(current_obj + '\n__________\n' + worddef)
+        worddef = cohereapi.grabDefinition(current_obj)
+        # worddef = "hi"
+        self.label.setText(current_obj + '\n__________\n\n' + worddef)
         self.label.setStyleSheet(
             "background-color: #DBF0FF;"
             "font-family: times; "
