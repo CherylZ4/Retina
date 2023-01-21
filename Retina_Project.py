@@ -7,11 +7,13 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         self.setWindowTitle("Retina")
-        self.setGeometry(100, 100, 400, 300)
 
         button = QPushButton("Upload image", self)
-        button.setGeometry(150, 150, 100, 50)
+        button.setGeometry(self.height(), self.width(), 100, 50)
         button.clicked.connect(self.open_image)
+
+        self.showMaximized()
+        # self.setGeometry(200, 200, 400, 300)
 
     def open_image(self):
         options = QFileDialog.Option.ReadOnly
@@ -26,7 +28,7 @@ class MainWindow(QMainWindow):
 class ImageWindow(QMainWindow):
     def __init__(self, file_name):
         super().__init__()
-        self.setWindowTitle("Retina - Image Viewer")
+        self.setWindowTitle("Retina")
         self.setGeometry(100, 100, 800, 600)
         self.showMaximized()
         label = QLabel(self)
