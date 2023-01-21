@@ -20,4 +20,4 @@ def grabobjects(path):
     print(itemdict)
     return(itemdict)
 
-grabobjects('/home/conradm/GitHub/Retina/23-01-21-07:41:58.jpg')
+#grabobjects('/home/conradm/GitHub/Retina/23-01-21-07:41:58.jpg')

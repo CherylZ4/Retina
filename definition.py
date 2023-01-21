@@ -2,6 +2,8 @@ from PyQt6.QtWidgets import *
 from PyQt6.QtGui import *
 from PyQt6.QtCore import QSize, Qt
 from PyQt6 import QtCore, QtGui
+from pathlib import Path
+import cohereapi
 
 import sys
 
@@ -44,7 +46,7 @@ class MainWindow(QMainWindow):
 
     def show_new_window(self, x, y):
         if self.w is None:
-            self.w = AnotherWindow(x, y)
+            self.w = Definition(x, y)
             self.w.show()
         else:
             self.w.close()
@@ -64,7 +66,7 @@ class Color(QWidget):
         palette.setColor(QPalette.ColorRole.Window, QColor(color))
         self.setPalette(palette)
 
-class AnotherWindow(QWidget):
+class Definition(QWidget):
     
     def __init__(self, x, y):
         super().__init__()
@@ -75,7 +77,9 @@ class AnotherWindow(QWidget):
         global current_obj
 
         self.label = QLabel()
-        self.label.setText(current_obj + '\n__________')
+        # worddef = cohereapi.grabDefinition(current_obj)
+        worddef = "hi"
+        self.label.setText(current_obj + '\n__________\n' + worddef)
         self.label.setStyleSheet(
             "background-color: #DBF0FF;"
             "font-family: times; "
@@ -93,9 +97,13 @@ class AnotherWindow(QWidget):
         self.move(x, y)
 
 
+if __name__ == '__main__':
 
-app = QApplication(sys.argv)
-window = MainWindow()
-window.show()
+    app = QApplication(sys.argv)
+    app.setStyleSheet(Path('style.qss').read_text())
+    window = MainWindow()
+    sys.exit(app.exec())
 
-app.exec()
+# window.show()
+
+# app.exec()
