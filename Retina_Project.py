@@ -7,7 +7,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         self.setWindowTitle("Retina")
-        self.setGeometry(100, 100, 400, 300)
+        self.showMaximized()
 
         button = QPushButton("Upload image", self)
         button.setGeometry(150, 150, 100, 50)
@@ -26,7 +26,7 @@ class MainWindow(QMainWindow):
 class ImageWindow(QMainWindow):
     def __init__(self, file_name):
         super().__init__()
-        self.setWindowTitle("Retina - Image Viewer")
+        self.setWindowTitle("Retina")
         self.setGeometry(100, 100, 800, 600)
         self.showMaximized()
         label = QLabel(self)
