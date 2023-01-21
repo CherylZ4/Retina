@@ -5,6 +5,9 @@ from PyQt6 import QtCore, QtGui
 
 import sys
 
+# top-left, top-right, bottom-left, bottom-right
+objCoord = {'glasses': [(0,0), (0, 100), (100, 0), (500, 500)]}
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -15,10 +18,19 @@ class MainWindow(QMainWindow):
 
         self.w = None
 
+    def objClicked(self, event):
+        pos = event.pos()
+        for obj in objCoord:
+            if objCoord[obj][0][0] <= pos.x() <= objCoord[obj][3][0]:
+                if objCoord[obj][0][1] <= pos.y() <= objCoord[obj][3][1]:
+                    return True
+
+        
 
     def mousePressEvent(self, event):
         pos = event.pos()
-        self.show_new_window(pos.x(), pos.y())
+        if self.objClicked(event): 
+            self.show_new_window(pos.x(), pos.y())
 
     def show_new_window(self, x, y):
         if self.w is None:
@@ -32,15 +44,43 @@ class MainWindow(QMainWindow):
         if self.w:
             self.w.close()
 
+class Color(QWidget):
+
+    def __init__(self, color):
+        super(Color, self).__init__()
+        self.setAutoFillBackground(True)
+
+        palette = self.palette()
+        palette.setColor(QPalette.ColorRole.Window, QColor(color))
+        self.setPalette(palette)
+
 class AnotherWindow(QWidget):
     
     def __init__(self, x, y):
         super().__init__()
-        self.setFixedSize(400,300)
+        self.setFixedSize(500,400)
         layout = QVBoxLayout()
-        self.label = QLabel("Definition")
+        self.setWindowTitle('Definition')
+
+        # layout.addWidget(Color('#DBF0FF'))
+        self.label = QLabel()
+        self.label.setText("Word")
+        self.label.setStyleSheet(
+            "background-color: #DBF0FF; "
+            "font-family: times; "
+            "font-size: 40px;"
+            "color: #0D2333;"
+        )
+        # layout.addWidget(self.label)
+        self.label.setAlignment(Qt.AlignmentFlag.AlignTop)
+        #font = QtGui.QFont("Times", 50)
+        #self.label.setFont(font)
+        # self.label.setFont(QFont(families[0], 80))
         layout.addWidget(self.label)
+
         self.setLayout(layout)
+
+
 
         self.move(x, y)
 
