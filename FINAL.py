@@ -48,6 +48,12 @@ stylesheet = ("""
         background-repeat: no-repeat; 
         background-position: center;
     }
+
+     #info{
+        border-image: url(info.png) 0 0 0 0 stretch stretch;
+        background-repeat: no-repeat; 
+        background-position: center;
+    }
 """)
 
 global defDict
@@ -60,6 +66,9 @@ class ImageWindow(QMainWindow):
         self.w = None
         self.size = self.screen().size()
         self.setWindowTitle("Retina")
+        # info = QPushButton(self, objectName='info')
+        # info.setGeometry(-5, 700, 300, 250)
+        # info.setStyleSheet("border-style: outset; border-radius:40px; margin: auto; background-color: #8BC3EB; font-weight:bold; font-size:40px; padding: 15px; width: 75%; font-style:Times New Roman")
         self.showMaximized()
         qss = "ImageWindow{border-image: url(%s) 0 0 0 0 stretch stretch;background-repeat: no-repeat; background-position: center;}" % (
             file_name,
