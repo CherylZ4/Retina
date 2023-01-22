@@ -24,5 +24,6 @@ def openCam():
         if cv2.waitKey(1) & 0xFF == 0x20:
             cv2.imwrite('current.jpg', frame)
             break
-    #cam.release()
+    cam.release()
+    cv2.destroyAllWindows()
     return 'current.jpg'
