@@ -1,3 +1,9 @@
 QLabel{
     background-color: #73A4C8;
 }
+
+MainWindow{
+    background-image: url("imges\cat.jpg"); 
+    background-repeat: no-repeat; 
+    background-position: center;
+}

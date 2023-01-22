@@ -32,15 +32,16 @@ class ImageWindow(QMainWindow):
         self.w = None
         self.size = self.screen().size()
         self.setWindowTitle("Retina")
-        self.setGeometry(100, 100, 800, 600)
         self.showMaximized()
         label = QLabel(self)
         self.pixmap = QPixmap(file_name)
         label.setPixmap(self.pixmap)
-        # x = pixmap.width()
-        # y = pixmap.height()
+        self.setGeometry(100, 100, 800, 600)
+        # self.pixmap = self.pixmap.scaled(self.size.width(), self.size.height(), Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.FastTransformation)
         self.setCentralWidget(label)
-        self.resize(self.pixmap.width(), self.pixmap.height())
+        # self.pixmap.scaledToHeight(1000)
+        # self.resize(self.pixmap.width(), self.pixmap.height())
+        # self.scaled(64,64, QtCore.Qt.KeepAspectRatio)
     
     def objClicked(self, event):
         global objCoord
@@ -52,6 +53,11 @@ class ImageWindow(QMainWindow):
                 if objCoord[obj][0][1] * self.pixmap.height() <= pos.y() <= objCoord[obj][2][1] * self.pixmap.height():
                     current_obj = obj
                     return True
+
+    def keyPressEvent(self, e):
+        if e.key() == Qt.Key.Key_Space:
+            self.close()
+            self.w = MainWindow()
 
         
 
@@ -77,23 +83,26 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle("Retina")
         self.setAutoFillBackground(True)
-        self.setStyleSheet('background-color: #DBF0FF')
+        self.setStyleSheet('background-color: #B9E2FF')
         button = QPushButton("+ Upload image", self)
-        button.setFont(QFont('italic', 25))
+        button.setFont(QFont('Times New Roman', 25))
         button.setGeometry(self.height()-200, self.width() - 430, 1050, 600)
         button.clicked.connect(self.open_image)
-        button.setStyleSheet("border-style: outset; border-radius: 15px; margin: auto; background-color: #8BC3EB; font-weight:bold; font-size:40px; padding: 15px; width: 75%; font-style:italic")
+        button.setStyleSheet("border-style: outset; border-radius: 15px; margin: auto; background-color: #8BC3EB; font-weight:bold; font-size:40px; padding: 15px; width: 75%; font-style:Times New Roman")
         header = QLineEdit("Find Image Object Name and Definition", self)
         header.resize(800, 200)
-        header.move(self.height()-200, self.width()-625)
-        header.setFont(QFont('italic', 30))
-        header.setStyleSheet("background-color: #73A4C8; margin:auto; font-weight: bold; font-size:35px; font-style:italic; border: 2px solid; border-radius:10px; padding: 15px")
+        header.move(self.height()-200, self.width()-630)
+        header.setFont(QFont('Times New Roman', 30))
+        header.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        header.setStyleSheet("background-color: #73A4C8; margin:auto; font-weight: bold; font-size:35px; font-style:Times New Roman; border: 2px solid; border-radius:10px; padding: 15px")
         subheader = QLineEdit("Click on the object for definition", self)
         subheader.setGeometry(self.height()+350, self.width()-525, 450, 130)
-        subheader.setStyleSheet("border-radius: 15px; margin:auto; background-color: #8DEDF9; opacity: 40%; padding: 15px; font-weight: bold; font-style:italic; font-size: 20px")
+        subheader.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        subheader.setStyleSheet("border-radius: 15px; margin:auto; background-color: #8DEDF9; opacity: 40%; padding: 15px; font-weight: bold; font-style:Times New Roman; font-size: 20px")
         
         abutton2 = QPushButton("Take photo", self)
         abutton2.setGeometry(self.height()+190, self.width()+160, 200, 50)
+        abutton2.setFont(QFont('Times New Roman', 30))
         abutton2.setStyleSheet("font-size: 20px; background-color: #4BB3FF;")
         abutton2.clicked.connect(self.take_photo)
 
@@ -128,6 +137,20 @@ class MainWindow(QMainWindow):
             self.hide()
             self.image_window = ImageWindow(file_name)
             self.image_window.show()
+    
+stylesheet = """
+    MainWindow{
+        border-image: url(current.jpg) 0 0 0 0 stretch stretch;
+        background-repeat: no-repeat; 
+        background-position: center;
+    }
+
+    QPushButton{
+        border-image: url(current.jpg) 0 0 0 0 stretch stretch;
+        background-repeat: no-repeat; 
+        background-position: center;
+    }
+"""
 
 class Color(QWidget):
 
@@ -179,7 +202,7 @@ if __name__ == '__main__':
 
     app = QApplication(sys.argv)
     window = MainWindow()
-    #with open("style.qss", "r") as file:
-       # app.setStyleSheet(file.read())
+    # #with open("style.qss", "r") as file:
+    app.setStyleSheet(stylesheet)
     window.show()
     sys.exit(app.exec())
