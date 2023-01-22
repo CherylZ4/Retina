@@ -84,26 +84,15 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Retina")
         self.setAutoFillBackground(True)
         self.setStyleSheet('background-color: #B9E2FF')
-        button = QPushButton("+ Upload image", self)
-        button.setFont(QFont('Times New Roman', 25))
-        button.setGeometry(self.height()-200, self.width() - 430, 1050, 600)
+        button = QPushButton(self, objectName='button')
+        button.setGeometry(self.height()-5, self.width() - 319, 587, 185)
         button.clicked.connect(self.open_image)
-        button.setStyleSheet("border-style: outset; border-radius: 15px; margin: auto; background-color: #8BC3EB; font-weight:bold; font-size:40px; padding: 15px; width: 75%; font-style:Times New Roman")
-        header = QLineEdit("Find Image Object Name and Definition", self)
-        header.resize(800, 200)
-        header.move(self.height()-200, self.width()-630)
-        header.setFont(QFont('Times New Roman', 30))
-        header.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        header.setStyleSheet("background-color: #73A4C8; margin:auto; font-weight: bold; font-size:35px; font-style:Times New Roman; border: 2px solid; border-radius:10px; padding: 15px")
-        subheader = QLineEdit("Click on the object for definition", self)
-        subheader.setGeometry(self.height()+350, self.width()-525, 450, 130)
-        subheader.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        subheader.setStyleSheet("border-radius: 15px; margin:auto; background-color: #8DEDF9; opacity: 40%; padding: 15px; font-weight: bold; font-style:Times New Roman; font-size: 20px")
+        button.setStyleSheet("border-style: outset; border-radius:40px; margin: auto; background-color: #8BC3EB; font-weight:bold; font-size:40px; padding: 15px; width: 75%; font-style:Times New Roman")
         
-        abutton2 = QPushButton("Take photo", self)
-        abutton2.setGeometry(self.height()+190, self.width()+160, 200, 50)
-        abutton2.setFont(QFont('Times New Roman', 30))
-        abutton2.setStyleSheet("font-size: 20px; background-color: #4BB3FF;")
+        abutton2 = QPushButton(self, objectName='abutton2')
+        abutton2.setGeometry(self.height()-5, self.width()-55, 587, 185)
+        abutton2.setStyleSheet("border-style: outset; border-radius:40px; margin: auto; background-color: #8BC3EB; font-weight:bold; font-size:40px; padding: 15px; width: 75%; font-style:Times New Roman")
+    
         abutton2.clicked.connect(self.take_photo)
 
         self.showMaximized()
@@ -140,13 +129,19 @@ class MainWindow(QMainWindow):
     
 stylesheet = """
     MainWindow{
-        border-image: url(current.jpg) 0 0 0 0 stretch stretch;
+        border-image: url(home.jpg) 0 0 0 0 stretch stretch;
         background-repeat: no-repeat; 
         background-position: center;
     }
 
-    QPushButton{
-        border-image: url(current.jpg) 0 0 0 0 stretch stretch;
+    #button{
+        border-image: url(upload.png) 0 0 0 0 stretch stretch;
+        background-repeat: no-repeat; 
+        background-position: center;
+    }
+
+    #abutton2{
+        border-image: url(take_photo.png) 0 0 0 0 stretch stretch;
         background-repeat: no-repeat; 
         background-position: center;
     }

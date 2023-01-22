@@ -1,9 +1,11 @@
-QLabel{
-    background-color: #73A4C8;
+QPushButton #button{
+    border-image: url(upload.png) 0 0 0 0 stretch stretch;
+    background-repeat: no-repeat; 
+    background-position: center;
 }
 
 MainWindow{
-    background-image: url("imges\cat.jpg"); 
+    border-image: url(home.jpg) 0 0 0 0 stretch stretch;
     background-repeat: no-repeat; 
     background-position: center;
 }
