@@ -9,6 +9,4 @@ def grabDefinition(word: str):
     temperature=0.8,
     stop_sequences=["--"],
   )
-    return (response.generations[0].text)
-
-print(grabDefinition('Wood'))
+    return (response.generations[0].text.strip('--').strip('\n').lower())

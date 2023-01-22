@@ -19,5 +19,3 @@ def grabobjects(path):
             coordslist.append(vertexlist)
         itemdict[object.name] = coordslist
     return(itemdict)
-
-#grabobjects('/home/conradm/GitHub/Retina/23-01-21-07:41:58.jpg')
