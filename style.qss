@@ -1,26 +1,3 @@
-def webdesign(self)
-self.header = QLabel("Find Image Object Name and Defintion")
-self.header.setAlignment(Qt.AlignmentFlag.AlignCenter)
-self.header.setStyleSheet{
-    margin: auto;
-    font-weight:bold;
-    font-size:40px;
-    border: 2px solid #73A4C8;
-    padding: 15px;
-    width: 75%;
-    font-style:italic;
+QLabel{
     background-color: #73A4C8;
-    border-radius:10px;
-    }
-self.p = QLabel("+ Image Upload ")
-self.p.setAlignment(Qt.AlignmentFlag.AlignCenter)
-self.p.setStyleSheet{
-    margin:auto;
-    font-weight: bold;
-    font-size:30px;
-    font-style:italic;
-    border: 2px solid;
-    border-radius:10px;
-    width:85%;
-    text-align: center;
-    }
+}

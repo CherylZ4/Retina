@@ -3,15 +3,21 @@ from PyQt6.QtWidgets import *
 from PyQt6.QtGui import *
 from PyQt6.QtCore import *
 import photoshoot
+# from PyQt6.QtGui import QLabel, Qfont 
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         self.setWindowTitle("Retina")
 
-        button = QPushButton("Upload image", self)
-        button.setGeometry(self.height(), self.width(), 100, 50)
+        button = QPushButton("+ Upload image", self)
+        button.setGeometry(self.height(), self.width(), 225, 300)
         button.clicked.connect(self.open_image)
+        button.setStyleSheet('background-color: #8BC3EB')
+        header = QLabel("Find image object name and definition", self)
+        header.move(self.height(), 924)
+        header.setFont(QFont("italic", 40))
+        header.setStyleSheet('color: black')
 
         button = QPushButton("Take photo", self)
         button.setGeometry(100, 200, 100, 50)
