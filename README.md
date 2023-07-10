@@ -1,6 +1,6 @@
 # Retina
 
-A python application that utilizes your webcam to point out what certain items are
+A python application that enables users to upload images captured from their webcams or files. Utilizing Cohere AI, the program efficiently identifies and recognizes all the objects present on the screen.
 
 ### Running
 
